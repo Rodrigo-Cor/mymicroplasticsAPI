@@ -1,9 +1,9 @@
-const { parseStringPromise } = require("xml2js");
-const { get } = require('axios');
+import xml2js from "xml2js";
+import axios from 'axios';
 
 const apiKey = process.env.KEY;
 
-module.exports = async function (context, req) {
+export default async function (context, req) {
     // Definir la URL base de la API de PubMed
     const baseUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
 
@@ -13,19 +13,22 @@ module.exports = async function (context, req) {
     //context.log('JavaScript HTTP trigger function processed a request.');
     //const name = (req.query.name || (req.body && req.body.name));
     try {
-        get(searchUrl).then( (response) => {
+        axios.get(searchUrl).then((response) => {
             const responseMessage = response.text()
+            context.res = {
+                // status: 200, /* Defaults to 200 */
+                body: responseMessage
+            };
+            
         })
+        //const responseMessage =  "Hello, " + name + ". This HTTP triggered function executed successfully."
+        
     } catch (error) {
         context.res = {
             status: 400,
-            body: "Error en la respuesta del API" 
+            body: "Error en la respuesta del API"
         };
     }
 
-    //const responseMessage =  "Hello, " + name + ". This HTTP triggered function executed successfully."
-    context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: responseMessage
-    }; 
+
 }
