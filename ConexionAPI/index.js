@@ -1,5 +1,4 @@
 import {parseStringPromise} from 'xml2js'
-import {get} from 'axios'
 
 module.exports = async function (context, req) {
     // Definir la URL base de la API de PubMed
