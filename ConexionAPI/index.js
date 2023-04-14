@@ -11,12 +11,15 @@ export default async function (context, req) {
     const searchUrl = `${baseUrl}esearch.fcgi?db=pubmed&api_key=${apiKey}&term=${searchTerm}&free_full_text=yes`
     //context.log('JavaScript HTTP trigger function processed a request.');
     //const name = (req.query.name || (req.body && req.body.name));
-
+    context.res = {
+        body: searchUrl
+    };
+    
+    /*
     axios.get(searchUrl)
         .then((response) => {
             const responseMessage = response
             context.res = {
-                // status: 200, /* Defaults to 200 */
                 body: responseMessage
             };
         })
@@ -26,4 +29,5 @@ export default async function (context, req) {
                 body: error
             };
         });
+    */
 }
