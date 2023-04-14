@@ -1,4 +1,4 @@
-import {parseStringPromise} from 'xml2js'
+const { parseStringPromise } = require("xml2js");
 
 module.exports = async function (context, req) {
     // Definir la URL base de la API de PubMed
