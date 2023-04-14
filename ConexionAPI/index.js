@@ -6,7 +6,7 @@ module.exports = async function (context, req) {
 
     // Definir los parámetros de búsqueda
     const searchTerm = "color psychology"
-    const apiKey = process.env.API_KEY
+    const apiKey = API_KEY
     const searchUrl = `${baseUrl}esearch.fcgi?db=pubmed&api_key=${apiKey}&term=${searchTerm}&free_full_text=yes`
     context.log('JavaScript HTTP trigger function processed a request.');
     const name = (req.query.name || (req.body && req.body.name));
