@@ -1,4 +1,6 @@
 const { parseStringPromise } = require("xml2js");
+const apiKey = process.env.KEY;
+
 
 module.exports = async function (context, req) {
     // Definir la URL base de la API de PubMed
@@ -6,8 +8,6 @@ module.exports = async function (context, req) {
 
     // Definir los parámetros de búsqueda
     const searchTerm = "color psychology"
-
-    const apiKey = process.env.KEY;
     
     const searchUrl = `${baseUrl}esearch.fcgi?db=pubmed&api_key=${apiKey}&term=${searchTerm}&free_full_text=yes`
     context.log('JavaScript HTTP trigger function processed a request.');
