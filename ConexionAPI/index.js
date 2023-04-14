@@ -1,6 +1,3 @@
-import {axios} from 'axios'
-import {parseStringPromise} from 'xml2js'
-
 module.exports = async function (context, req) {
     // Definir la URL base de la API de PubMed
     const baseUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
