@@ -1,9 +1,9 @@
-import { send } from "../globalFunctions";
+const  send  = require("../globalFunctions");
 const { parseStringPromise } = require("xml2js");
 const axios = require("axios");
 //const apiKey = process.env.KEY;
 
-export const GetID = async function(context, req) {
+module.exports = async function GetIDArticles(context, req) {
     // Definir la URL base de la API de PubMed
     const baseUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
 
@@ -11,7 +11,7 @@ export const GetID = async function(context, req) {
     const apiKey = "445f5e20db09bea235c4eb9b04c2e43d6d09";
 
     // Definir los parámetros de búsqueda
-    const searchTerm = "psychology";
+    const searchTerm = "microplastics water";
 
     const searchUrl = `${baseUrl}esearch.fcgi?db=pubmed&api_key=${apiKey}&term=${searchTerm}&free_full_text=yes`;
     try {
@@ -26,14 +26,14 @@ export const GetID = async function(context, req) {
             if (num >= ids.length)
                 num = 0;    
         }
-        return send(200, articles)
+        return send(200, articles);
         /*context.res = {
             // status: 200, /* Defaults to 200 
             body: articles
         };
         */
     } catch (error) {
-        return send(404,"Error en la obtención de los ID's")
+        return send(404,"Error en la obtención de los ID's");
         /*
         context.res = {
             status: 400,
