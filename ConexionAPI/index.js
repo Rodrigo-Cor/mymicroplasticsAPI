@@ -10,7 +10,9 @@ export default async function (context, req) {
     // Definir los parámetros de búsqueda
     const searchTerm = "color psychology"
     const searchUrl = `${baseUrl}esearch.fcgi?db=pubmed&api_key=${apiKey}&term=${searchTerm}&free_full_text=yes`
-    //const name = (req.query.name || (req.body && req.body.name));
+    
+    const name = (req.query.name || (req.body && req.body.name));
+
     context.res = {
         body: searchUrl
     };
