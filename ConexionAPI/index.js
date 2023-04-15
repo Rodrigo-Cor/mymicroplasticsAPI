@@ -23,7 +23,7 @@ module.exports = async function (context, req) {
         context.res = {
             // status: 200, /* Defaults to 200 */
             status:200,
-            body: typeof(response)
+            body: response.data
         };
     } catch (error) {
         context.res = {
