@@ -1,19 +1,21 @@
 const { parseStringPromise } = require("xml2js");
 const axios = require("axios");
+
 const GetIDArticles = require("../GetIDArticles/index");
-//const apiKey = process.env.KEY;
+const send = require("../globalFunctions");
+
+const apiKey = process.env.KEY;
 
 
 module.exports = async function (context, req) {
     //console.log(GetIDArticles())
     const { status, body } = await GetIDArticles();
-    //const name = (req.query.name || (req.body && req.body.name));
     //Falta definir cuando exista 404 pero luego lo haré
 
     // Definir la URL base de la API de PubMed
     const baseUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
     //Solo para debugger
-    const apiKey = "445f5e20db09bea235c4eb9b04c2e43d6d09";
+    //const apiKey = "445f5e20db09bea235c4eb9b04c2e43d6d09";
     let articlesData = []
     try {
         for (id of body) {
@@ -25,18 +27,23 @@ module.exports = async function (context, req) {
                 author: jsonDataArticles["PubmedArticleSet"]["PubmedArticle"][0]["MedlineCitation"][0]["Article"][0]["AuthorList"][0]["Author"].map((author) => author["LastName"][0] + " " + author["Initials"][0]).join(", "),
                 link: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
             });
-
+            return send(200, articlesData);
+            /*
             context.res = {
                 // status: 200, /* Defaults to 200 
                 body: articlesData
             };
+            */
         }
     } catch (error) {
+        return send(400, "Error en la conexion");
+        /*
         context.res = {
             // status: 200, /* Defaults to 200 
             status: 400,
             body: "Error"
         };
+        */
     }
     //console.log(typeof(body))
     //const responseMessage = "Status: " + status+ "Body: " + body
