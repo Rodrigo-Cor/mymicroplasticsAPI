@@ -1,8 +1,10 @@
-const { get } = require("axios");
-const apiKey = process.env.KEY;
+//const { get } = require("axios");
+//const { parseStringPromise } = require("xml2js");
+
+//const apiKey = process.env.KEY;
 
 export default async function (context, req) {
-    context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
+    context.log('Node.js HTTP trigger function processed a request. RequestUri=');
 
     if (req.query.name || (req.body && req.body.name)) {
         context.res = {
