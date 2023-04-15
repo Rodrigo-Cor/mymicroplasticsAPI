@@ -27,7 +27,7 @@ module.exports = async function (context, req) {
     } catch (error) {
         context.res = {
             status: 400,
-            body: "Error en la conexión al API"
+            body: error
         }
     }
 };
