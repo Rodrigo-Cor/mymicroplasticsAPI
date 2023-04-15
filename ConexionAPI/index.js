@@ -16,6 +16,7 @@ export default async function (context, req) {
         body: searchUrl
     };
     //const response = await axios.get();
+    
     /*
     axios.get(searchUrl)
         .then((response) => {
@@ -31,4 +32,4 @@ export default async function (context, req) {
             };
         });
     */
-}
+};
