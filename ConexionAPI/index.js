@@ -18,9 +18,10 @@ module.exports = async function (context, req) {
 */
     try {
         const response = await axios.get(searchUrl);
+        const data = await response.text();
         context.res = {
             // status: 200, /* Defaults to 200 */
-            body: response
+            body: data
         };
     } catch (error) {
         context.res = {
