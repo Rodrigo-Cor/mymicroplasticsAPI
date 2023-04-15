@@ -2,6 +2,7 @@ const { parseStringPromise } = require("xml2js");
 const axios = require("axios");
 //const apiKey = process.env.KEY;
 
+
 module.exports = async function (context, req) {
     // Definir la URL base de la API de PubMed
     const baseUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
@@ -41,4 +42,4 @@ module.exports = async function (context, req) {
             body: "Error en la conexión al API"
         }
     }
-};
+}
