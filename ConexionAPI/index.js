@@ -18,12 +18,11 @@ module.exports = async function (context, req) {
 */
     try {
         const response = await axios.get(searchUrl);
-        //const data = await type(response.text());
-        //const json = await parseStringPromise(data, { mergeAttrs: true });
+        const json = await parseStringPromise((response.data), { mergeAttrs: true });
         context.res = {
             // status: 200, /* Defaults to 200 */
             status:200,
-            body: response.data
+            body: json
         };
     } catch (error) {
         context.res = {
