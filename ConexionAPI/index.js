@@ -16,7 +16,7 @@ export default async function (context, req) {
     context.res = {
         body: searchUrl
     };
-    const response = await axios.get();
+    //const response = await axios.get();
     /*
     axios.get(searchUrl)
         .then((response) => {
