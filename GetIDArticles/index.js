@@ -1,9 +1,9 @@
+import { send } from "../globalFunctions";
 const { parseStringPromise } = require("xml2js");
 const axios = require("axios");
 //const apiKey = process.env.KEY;
 
-
-module.exports = async function (context, req) {
+export const GetID = async function(context, req) {
     // Definir la URL base de la API de PubMed
     const baseUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
 
@@ -14,12 +14,6 @@ module.exports = async function (context, req) {
     const searchTerm = "psychology";
 
     const searchUrl = `${baseUrl}esearch.fcgi?db=pubmed&api_key=${apiKey}&term=${searchTerm}&free_full_text=yes`;
-    context.log('JavaScript HTTP trigger function processed a request.');
-    const name = (req.query.name || (req.body && req.body.name));
-    /*
-    const responseMessage =  "Hello, " + name + ". This HTTP triggered function executed successfully."
-    + "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response." + searchUrl;
-*/
     try {
         const response = await axios.get(searchUrl);
         const json = await parseStringPromise((response.data), { mergeAttrs: true });
@@ -32,14 +26,19 @@ module.exports = async function (context, req) {
             if (num >= ids.length)
                 num = 0;    
         }
-        context.res = {
-            // status: 200, /* Defaults to 200 */
+        return send(200, articles)
+        /*context.res = {
+            // status: 200, /* Defaults to 200 
             body: articles
         };
+        */
     } catch (error) {
+        return send(404,"Error en la obtención de los ID's")
+        /*
         context.res = {
             status: 400,
             body: "Error en la conexión al API"
         }
+        */
     }
-}
+};
