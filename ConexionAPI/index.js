@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+const { get } = require("axios");
 const apiKey = process.env.KEY;
 
 export default async function (context, req) {
