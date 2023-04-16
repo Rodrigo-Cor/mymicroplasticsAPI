@@ -27,23 +27,17 @@ module.exports = async function (context, req) {
                 author: jsonDataArticles["PubmedArticleSet"]["PubmedArticle"][0]["MedlineCitation"][0]["Article"][0]["AuthorList"][0]["Author"].map((author) => author["LastName"][0] + " " + author["Initials"][0]).join(", "),
                 link: `https://pubmed.ncbi.nlm.nih.gov/${id}/`,
             });
-            return send(200, articlesData);
-            /*
             context.res = {
                 // status: 200, /* Defaults to 200 
                 body: articlesData
             };
-            */
         }
     } catch (error) {
-        return send(400, "Error en la conexion");
-        /*
         context.res = {
             // status: 200, /* Defaults to 200 
             status: 400,
             body: "Error"
         };
-        */
     }
     //console.log(typeof(body))
     //const responseMessage = "Status: " + status+ "Body: " + body
