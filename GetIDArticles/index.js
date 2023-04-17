@@ -15,8 +15,8 @@ module.exports = async function GetIDArticles(context, req) {
 
     // Definir los parámetros de búsqueda
     const searchTerm = req.body && req.body.searchTerm
-    const typeRequest = req.body && req.body.typeRequest
-    const articlesNum = req.body && req.body.articlesNum
+    const typeRequest = parseInt(req.body && req.body.typeRequest)
+    const articlesNum = parseInt(req.body && req.body.articlesNum)
 
     // Definir la URL de la petición
     let searchUrl = `${baseUrl}esearch.fcgi?db=pubmed&api_key=${apiKey}&term=${searchTerm}&free_full_text=yes`;
