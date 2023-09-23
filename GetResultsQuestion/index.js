@@ -12,25 +12,24 @@ module.exports = async function (context, req) {
     return;
   }
 
-  const id = req.body && req.body.id;
-  const initialAnswer = req.body && req.body.initialAnswer;
-  const finalAnswer = req.body && req.body.finalAnswer;
   const numberQuestion = req.body && req.body.numberQuestion;
-
-  const user = {
-    id: id,
-    initialAnswer: initialAnswer,
-    finalAnswer: finalAnswer,
-    numberQuestion: numberQuestion,
+  const userProperties = {
+    id: 1,
+    initialAnswer: 1,
+    finalAnswer: 1,
+    numberQuestion: 1,
+    _id: 0,
   };
-
-  console.log("Usuario" + user);
-
-  const newUser = new User(user);
-  await newUser.save();
+  
+  let user = [];
+  if (numberQuestion === "") {
+    user = await User.find({}, userProperties);
+  } else {
+    user = await User.find({ numberQuestion: numberQuestion }, userProperties);
+  }
 
   context.res = {
-    status: 201,
-    body: "Se ha registrado " + id + " con exito",
+    status: 200,
+    body: user,
   };
 };

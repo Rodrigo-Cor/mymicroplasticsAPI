@@ -2,15 +2,18 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  username: { type: String, required: true },
-  password: { type: String, required: true },
-  questions: {
-    type: [
-      {
-        question: { type: String, required: true },
-        answer: { type: String, required: true },
-      },
-    ],
+  id: { type: String, required: true },
+  initialAnswer: {
+    type: Schema.Types.Mixed,
+    required: true,
+  },
+  finalAnswer: {
+    type: Schema.Types.Mixed,
+    required: true,
+  },
+  numberQuestion: {
+    type: Number,
+    required: true,
   },
 });
 
